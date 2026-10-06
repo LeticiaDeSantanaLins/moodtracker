@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
+require("dotenv").config();
 
 const app = express();
 const PORT = 3001;
@@ -11,10 +12,10 @@ app.use(express.json());
 
 // Conexão com o banco
 const banco = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "123456",
-  database: "moodtracker",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 banco.connect((erro) => {
